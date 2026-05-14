@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ivory: #f8f3ea;
+  --sand: #dfc8a6;
+  --sea: #0f4b6e;
+  --eucalyptus: #6f8f81;
+  --gold: #c8a66a;
+  --clay: #d8c2ad;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  direction: rtl;
+  background: radial-gradient(circle at 15% 10%, rgba(200,166,106,0.16), transparent 35%),
+    radial-gradient(circle at 85% 20%, rgba(111,143,129,0.18), transparent 35%),
+    var(--ivory);
+  color: #1f2a2f;
+}
+
+.grain::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(15, 75, 110, 0.05) 0.5px, transparent 0.5px);
+  background-size: 3px 3px;
+  pointer-events: none;
+}
+
+.reveal { animation: fadeUp 0.8s ease both; }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
