@@ -1,0 +1,7 @@
+generator client { provider = "prisma-client-js" }
+datasource db { provider = "postgresql" url = env("DATABASE_URL") }
+
+model User { id String @id @default(cuid()) email String @unique name String? locale String @default("ar") bookings Booking[] quizzes WellnessQuiz[] }
+model Retreat { id String @id @default(cuid()) slug String @unique titleAr String titleEn String location String nights Int price Int bookings Booking[] }
+model Booking { id String @id @default(cuid()) userId String retreatId String startDate DateTime guests Int stressLevel Int wellnessGoals String? foodPreferences String? environmentPreference String status String @default("pending") createdAt DateTime @default(now()) user User @relation(fields: [userId], references: [id]) retreat Retreat @relation(fields: [retreatId], references: [id]) }
+model WellnessQuiz { id String @id @default(cuid()) userId String burnout Int stress Int sleep Int emotionalState Int socialFatigue Int recommendedTrack String createdAt DateTime @default(now()) user User @relation(fields: [userId], references: [id]) }
